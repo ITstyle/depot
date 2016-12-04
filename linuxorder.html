@@ -1,0 +1,439 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>邓定东的博客</title>
+    <!-- <link rel="stylesheet" href="stylesheets/github-light.css"> -->
+    <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">           
+    <link rel="stylesheet" href="css/bootstrap.min.css">                               
+    <link rel="stylesheet" href="css/hero-slider-style.css">                
+    <link rel="stylesheet" href="css/magnific-popup.css">                  
+    <link rel="stylesheet" href="css/templatemo-style.css"> 
+    <script src="js/jquery-1.11.3.min.js"></script>   
+    <script src="ja/tether.min.js"></script> 
+    <script src="js/bootstrap.min.js"></script>     
+    <script src="js/hero-slider-main.js"></script>        
+    <script src="js/jquery.magnific-popup.min.js"></script> 
+    <script>
+      function adjustHeightOfPage(pageNo) {
+         
+        // Get the page height
+        var totalPageHeight = 15 + $('.cd-slider-nav').height()
+                    + $(".cd-hero-slider li:nth-of-type(" + pageNo + ") .js-tm-page-content").height() + 160
+                    + $('.tm-footer').height();
+
+        // Adjust layout based on page height and window height
+        if(totalPageHeight > $(window).height()) 
+        {
+          $('.cd-hero-slider').addClass('small-screen');
+          $('.cd-hero-slider li:nth-of-type(' + pageNo + ')').css("min-height", totalPageHeight + "px");
+        }
+        else 
+        {
+          $('.cd-hero-slider').removeClass('small-screen');
+          $('.cd-hero-slider li:nth-of-type(' + pageNo + ')').css("min-height", "100%");
+        }
+
+      }
+
+      /*
+        Everything is loaded including images.
+      */
+      $(window).load(function(){
+
+        adjustHeightOfPage(1); // Adjust page height
+
+        /* Gallery pop up
+        -----------------------------------------*/
+        $('.tm-img-gallery').magnificPopup({
+          delegate: 'a', // child items selector, by clicking on it popup will open
+          type: 'image',
+          gallery:{enabled:true}                
+        });
+
+        /* Collapse menu after click 
+        -----------------------------------------*/
+        $('#tmNavbar a').click(function(){
+          $('#tmNavbar').collapse('hide');
+
+          adjustHeightOfPage($(this).data("no")); // Adjust page height       
+        });
+
+        /* Browser resized 
+        -----------------------------------------*/
+        $( window ).resize(function() {
+          var currentPageNo = $(".cd-hero-slider li.selected .js-tm-page-content").data("page-no");
+          adjustHeightOfPage( currentPageNo );
+        });
+
+        // Remove preloader
+        // https://ihatetomatoes.net/create-custom-preloading-screen/
+        $('body').addClass('loaded');
+               
+      });
+
+    </script>
+  </head>
+  <body>
+    <div class="cd-hero">
+
+      <div class="cd-slider-nav">
+        <nav class="navbar">
+          <button class="navbar-toggler hidden-md-up" type="button" data-toggle="collapse" data-target="#tmNavbar">
+            &#9776;
+          </button>
+          <div class="collapse navbar-toggleable-sm text-xs-center text-uppercase tm-navbar" id="tmNavbar">
+            <ul class="nav navbar-nav">
+              <!-- <li class="nav-item"> -->
+                <a class="nav-link" href="https://itstyle.github.io/depot/">首页</a>
+              <!-- </li> -->
+              <li class="nav-item">
+                <a class="nav-link" href="#0" data-no="2">近期文章</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>  
+      <ul class="cd-hero-slider"> 
+        <li class="selected">
+          <div class="cd-full-width">
+            <div class="container-fluid js-tm-page-content tm-page-1" data-page-no="1">
+              <div class="row">
+                <div class="col-xs-12">
+                  <i class="fa fa-4x fa-camera tm-icon"></i>
+                  <h2 class="tm-site-name">PHP</h2>
+                  <div class="tm-bg-white-translucent text-xs-left tm-textbox tm-textbox-1-col">
+                    <p class="tm-text">Linux常用命令</p>
+                    <p class="tm-text">一  文件操作命令</p>
+                    <p class="tm-text">
+                      1）创建空文件或修改文件时间 <br>
+                          touch  文件名  
+                          命令名称：touch ;
+                          命令所在路径：/bin/touch ;
+                          执行权限：所有用户 <br>
+                      2）删除    <br>
+                          rm  -rf  文件名 <br>
+                            -r  删除目录 ;
+                            -f  强制  <br>
+                          命令名称：rm ;
+                          命令英文原意：remove ;
+                          命令所在路径：/bin/rm ;
+                          执行权限：所有用户 <br>
+                      3）cat  文件名    查看文件内容。从头到尾 <br>
+                          命令名称：cat ;
+                          命令所在路径：/bin/cat ;
+                          执行权限：所有用户 ;
+                          -n  列出行号 <br>
+                      4）more  文件名 分屏显示文件内容 <br>
+                          命令名称：more ;
+                          命令所在路径：/bin/more ;
+                          执行权限：所有用户 <br>
+
+                          空格向下翻页   b   向上翻页    q  退出 <br>
+
+                      5） head  文件名  显示文件头 <br>
+                        命令名称：head ;
+                        命令所在路径：/usr/bin/head ;
+                        执行权限：所有用户 <br>
+                        head  -n  行数   文件名    指定显示文件头几行 <br>
+                        head  -n  20  文件名 ;
+                        head  -20  文件名 <br>
+                        ctrl +  c   强制终止 ;
+                        ctrl+l      清屏  clear <br>
+
+                      6） 链接文件    <br>
+                        ln     创建软连接(快捷方式) <br>
+                        命令名称：ln ;
+                        命令英文原意：link ;
+                        命令所在路径：/bin/ln ;
+                        执行权限：所有用户;
+                            新建的链接，占用不同的硬盘位置 ;
+                            修改一个文件，两都改变 ;
+                            删除源文件，软连接打不开 ;
+                            ln  -s  源文件  目标文件   文件名都必须写绝对路径   <br>
+                    </p>
+                    <p class='tm-text'>二、文件和目录都能操作的命令</p>
+                    <p class='tm-text'>
+                      1）复制 <br>
+                        命令名称：cp
+                        命令英文原意：copy
+                        命令所在路径：/bin/cp
+                        执行权限：所有用户 <br>
+                        cp  源文件  目标位置 <br>
+                          -r  复制目录
+                          -p  连带文件属性复制   
+                          -d  若源文件是链接文件，则复制链接属性
+                          -a  相当于  -pdr <br>
+                        cp  aa  /tmp/     原名复制
+                        cp  aa  /tmp/bb   改名复制 <br>
+                        2）剪切或改名 <br>  
+                        命令名称：mv
+                        命令英文原意：move
+                        命令所在路径：/bin/mv
+                        执行权限：所有用户 <br>
+                        mv  源文件  目标位置 <br>
+                        mv  /root/aa  /tmp/ <br>
+                        mv  aa  bb <br>
+                    <p class='tm-text'>三、权限管理(多用户 )</p>    
+                    <p class='tm-text'>
+                      1 权限位           所有者    所属组   大小     创建时间   文件名/目录名 <br>
+                        -rw-r--r--   1   root     root       0    08-11 01:45 aa <br>
+                        权限位是十位 <br>
+                        第一位：  代表文件类型 <br>
+                          - 普通文件
+                          d 目录文件
+                          l 链接文件   <br>                   
+
+                        九位    属主权限u    属组权限g     其他人权限o <br>
+
+                          r 读   4
+                          w 写   2
+                          x 执行    1 <br>
+
+                      2 修改权限  
+                        chmod <br>
+                        命令名称：chmod ;
+                        命令英文原意：change the permissions mode of a file;
+                        命令所在路径：/bin/chmod;
+                        执行权限：所有用户 <br>
+                        chmod  u+x  aa    aa文件的属主加上执行权限 <br>
+                        chmod  u-x  aa    <br>
+                        chmod  g+w,o+w  aa   g所属组    u所有者   o  其他人 <br>  
+                        chmod  u=rwx  aa <br>
+                        例：chmod  755  aa   <br>
+                      3 权限意义： <br>
+                        1）权限对文件的含义 <br>
+                          r：读取文件内容    cat  more  head  tail <br>
+                          w：编辑、新增、修改文件内容    vi  echo <br>
+                             但是不包含删除文件 <br>
+                          x：可执行   
+                        /tmp/11/22/abc   ---------  <br>  
+
+                        R  &nbsp; 4 &nbsp;&nbsp;
+                       W  &nbsp; 2 <br>       
+
+                        2）权限对目录的含义 <br>
+                          r：可以查询目录下文件名 &nbsp;&nbsp;   ls <br>
+                          w：具有修改目录结构的权限。如新建文件和目录，删除此目录下文件和目录，重命名此目录下文件和目录，剪切 &nbsp;&nbsp;     touch  rm  mv  cp <br>
+                          x：可以进入目录      cd <br>
+
+                      4 属主和属组命令  <br>
+                        chown &nbsp;&nbsp;  一般用来转让某个目录  &nbsp;&nbsp; 改变所有者 <br>
+                        命令名称：chown ;
+                        命令英文原意：change  owner(拥有者);
+                        命令所在路径：/bin/chown ;
+                        执行权限：所有用户 ;<br>
+
+                        chown &nbsp;&nbsp; 用户名 &nbsp;&nbsp; 文件名 &nbsp;&nbsp;  改变文件属主 <br>
+                        chown &nbsp;&nbsp; user1  &nbsp;&nbsp; aa &nbsp;&nbsp;   user1必须存在 <br>
+                        chown &nbsp;&nbsp; user1:user1 &nbsp;&nbsp; aa &nbsp;&nbsp; 改变属主同时改变属组 <br>
+                        useradd &nbsp;&nbsp; 用户名 &nbsp;&nbsp;   添加用户 <br>
+                        passwd &nbsp;&nbsp; 用户名 &nbsp;&nbsp;    设定用户密码 <br>   
+                    </p>
+                    <p class='tm-text'>四、帮助命令</p>
+                    <p class= 'tm-text'>
+                        1 man &nbsp;&nbsp; 命令名  &nbsp;&nbsp;    查看命令的帮助 <br>
+                          命令名称：man ;
+                          命令英文原意：manual ;
+                          命令所在路径：/usr/bin/man ;
+                          执行权限：所有用户 <br>
+                      
+                        2 命令 &nbsp;&nbsp; --help  &nbsp;&nbsp;    查看命令的常见选项
+                    </p>
+                    <p class='tm-text'>五、查找命令</p>
+                    <p class='tm-text'>
+                        1 whereis  &nbsp;&nbsp;  命令名   &nbsp;&nbsp;  查找命令的命令，同时看到帮助文档位置 <br>
+                          命令名称：whereis  ; 
+                          命令所在路径：/usr/bin/whereis ;
+                          执行权限：所有用户 <br>
+
+                        2 find     &nbsp;&nbsp;    搜索命令  <br>     
+                          命令名称：find ;
+                          命令所在路径：/usr/bin/find ;
+                          执行权限：所有用户 <br>
+
+                          按照文件名查找 : 
+                          find  &nbsp;&nbsp; 查找位置  &nbsp;&nbsp;  -name  &nbsp;&nbsp; 文件名 <br>
+                          find  &nbsp;&nbsp; /  &nbsp;&nbsp; -name  &nbsp;&nbsp; aabbcc   &nbsp;&nbsp;  按照文件名查找 <br>
+
+
+                          按照用户:
+                          -user  &nbsp;&nbsp; 用户名  &nbsp;&nbsp;   按照属主用户名查找文件 <br>
+                          -group  &nbsp;&nbsp; 组名  &nbsp;&nbsp;   按照属组组名查找文件 <br>
+                          -nouser   &nbsp;&nbsp; 找没有属主的文件 <br>
+
+                            /proc  &nbsp;&nbsp;
+                            /sys   &nbsp;&nbsp;
+                            /mnt/cdrom/   除了这三个目录 <br>
+                        
+                          find  /  -nouser  <br>
+
+                          按照文件权限:
+                          -name   &nbsp;&nbsp;   按照文件名 <br>
+                          -size   &nbsp;&nbsp;   按照文件大小。+50k：大于50k，-50k：小于50k，50k：等于50k  &nbsp;&nbsp;   k &nbsp;&nbsp; M  <br>
+                          find  /  -size  &nbsp;&nbsp; +50k <br>
+
+                          -type 类型   &nbsp;&nbsp;  按照文件类型查找   &nbsp;&nbsp;  f：普通  &nbsp;&nbsp;   d：目录   &nbsp;&nbsp;  l：链接 <br>
+
+                          find  &nbsp;&nbsp; /root  &nbsp;&nbsp; -perm  &nbsp;&nbsp;  644  &nbsp;&nbsp;  按照权限查找 <br>
+
+                          -iname    &nbsp;&nbsp;   按照文件名查找，不区分大小写 <br>
+
+                          -inum    &nbsp;&nbsp;  按照i节点查找 <br>
+                          find  &nbsp;&nbsp;. &nbsp;&nbsp; -inum  &nbsp;&nbsp;2739078 <br>
+
+                          在查找出的结果中，直接进行命令操作 <br>
+                          find  &nbsp;&nbsp; /var/log/  &nbsp;&nbsp; -mtime  &nbsp;&nbsp; +10  &nbsp;&nbsp; -exec  &nbsp;&nbsp; rm  &nbsp;&nbsp; -rf  &nbsp;&nbsp; {} &nbsp;&nbsp; \; <br>
+
+                          find  &nbsp;&nbsp; /root  &nbsp;&nbsp; -inum  &nbsp;&nbsp; 1140247  &nbsp;&nbsp; -exec  &nbsp;&nbsp; ls  &nbsp;&nbsp;-l &nbsp;&nbsp; {} &nbsp;&nbsp; \; <br>
+
+                        3 grep &nbsp;&nbsp;  “字符串”  &nbsp;&nbsp; 文件名  &nbsp;&nbsp;   查找符合条件的字串行。<br>
+                          命令名称：grep ;
+                          命令所在路径：/bin/grep ;
+                          执行权限：所有用户 <br>
+
+                          grep  &nbsp;&nbsp; -i  &nbsp;&nbsp; “root”  &nbsp;&nbsp; /etc/passwd <br>
+                            -v   &nbsp;&nbsp;  反向选择  &nbsp;&nbsp;
+                            -i    &nbsp;&nbsp; 忽略大小写 <br>
+
+                          Find: 在系统当中搜索符合条件的文件名，如果需要匹配，使用通配符匹配。通配符是完全匹配。<br>
+                          Grep： 在文件当中搜索符合条件的字符串，如果需要匹配，使用正则表达式匹配，正则表达式是包含匹配 <br>
+                        4 管道符     
+                          命令1  &nbsp;&nbsp; |  &nbsp;&nbsp;  命令2  &nbsp;&nbsp;    命令1的执行结果，作为命令2的执行条件 <br>
+
+                          netstat &nbsp;&nbsp; -an  &nbsp;&nbsp;| &nbsp;&nbsp; grep &nbsp;&nbsp; ESTABLISHED  &nbsp;&nbsp;|  &nbsp;&nbsp;wc  &nbsp;&nbsp;-l  &nbsp;&nbsp;   统计正在连接的网络连接数量 <br>  
+
+                          cat  &nbsp;&nbsp; 文件名  &nbsp;&nbsp; |  &nbsp;&nbsp; grep  &nbsp;&nbsp; “字串”  &nbsp;&nbsp;    提取含有字符串的行 <br>
+                          grep  &nbsp;&nbsp; “字符串”  &nbsp;&nbsp; 文件名 <br>
+
+                          ls  &nbsp;&nbsp; -l  &nbsp;&nbsp; /etc  &nbsp;&nbsp; | &nbsp;&nbsp;  more   &nbsp;&nbsp;          分屏显示ls内容 <br>
+                        补充命令：
+                          netstat   &nbsp;&nbsp;   查看网络状态的命令 <br>
+                            -t  查看tcp端口 ;
+                            -u  查看udp端口 ;
+                            -l  监听 ;
+                            -n  以IP和端口号显示，不用域名和服务名显示 ;
+                            -a  查询所有连接 ;<br>
+
+                    netstat &nbsp;&nbsp; -ntu &nbsp;&nbsp; | &nbsp;&nbsp; awk '{print $5}'  &nbsp;&nbsp;| &nbsp;&nbsp; cut  &nbsp;&nbsp; -d: &nbsp;&nbsp; -f1  &nbsp;&nbsp;| &nbsp;&nbsp; sort  &nbsp;&nbsp;| &nbsp;&nbsp; uniq &nbsp;&nbsp; -c  &nbsp;&nbsp;|  &nbsp;&nbsp;sort &nbsp;&nbsp; -n &nbsp;&nbsp;
+                        按照连接数量，统计哪个ip地址连接数量多 <br>
+
+                    </p>
+                    <p class='tm-text'>六、压缩和解压缩  </p>
+                    <p class='tm-text'>
+                        .gz &nbsp;&nbsp;  .bz2  &nbsp;&nbsp;  linux可以识别的常见压缩格式  <br> 
+                         .tar.gz&nbsp;&nbsp; .tar.bz2 &nbsp;&nbsp; 常见的压缩和打包命令 <br>
+                         压缩同时打包 <br>
+                          tar &nbsp;&nbsp; -zcvf &nbsp;&nbsp; 压缩文件名&nbsp;&nbsp;  源文件.... <br>
+                          tar &nbsp;&nbsp; -zcvf &nbsp;&nbsp; aa.tar.gz &nbsp;&nbsp; aa <br>
+                            -z &nbsp;&nbsp; 识别.gz格式 &nbsp;&nbsp; 以gz格式压缩 <br>
+                            -c：&nbsp;&nbsp; 压缩   &nbsp;&nbsp;       create 创建压缩文件 <br>
+                            -v：&nbsp;&nbsp;显示压缩过程  &nbsp;&nbsp; view 视图，显示 <br>
+                            -f：指定压缩包名 &nbsp;&nbsp;    file &nbsp;&nbsp; 文件名 <br>
+
+                          tar &nbsp;&nbsp; -zxvf &nbsp;&nbsp; 压缩文件名 &nbsp;&nbsp;  解压缩同时解打包 <br>
+
+                              -x &nbsp;&nbsp; 解压 <br>  
+                          tar &nbsp;&nbsp; -jcvf &nbsp;&nbsp; 压缩文件名 &nbsp;&nbsp; 源文件&nbsp;&nbsp;  压缩同时打包 <br>
+                          tar &nbsp;&nbsp; -jcvf &nbsp;&nbsp; aa.tar.bz2 &nbsp;&nbsp; aa <br>
+                          tar &nbsp;&nbsp; -jxvf &nbsp;&nbsp; aa.tar.bz2 &nbsp;&nbsp;   解打包同时解压缩 <br>
+
+                        查看不解包 <br>
+                          tar &nbsp;&nbsp; -ztvf &nbsp;&nbsp; aa.tar.gz &nbsp;&nbsp;  查看不解包 <br>
+                          tar &nbsp;&nbsp; -jtvf &nbsp;&nbsp; aa.tar.bz2 &nbsp;&nbsp;&nbsp;&nbsp;
+                            -t  只查看，不解压 <br>
+
+                          tar&nbsp;&nbsp; -jxvf&nbsp;&nbsp; root.tar.bz2&nbsp;&nbsp; -C &nbsp;&nbsp; /tmp/ 指定解压缩位置 <br>
+                    </p>
+                    <p class='tm-text'>七、关闭和重启命令</p>
+                    <p class='tm-text'>
+                      1）shutdown &nbsp;&nbsp;  -h &nbsp;&nbsp; now &nbsp;&nbsp;   没有特殊情况，使用此命令 <br>
+                        -h &nbsp;&nbsp; 关机 &nbsp;&nbsp;&nbsp;&nbsp;
+                        -r &nbsp;&nbsp; 重启  <br>
+
+                      shutdown &nbsp;&nbsp; -r &nbsp;&nbsp; now <br>
+                          命令名称：shutdown ;
+                          命令所在路径：/sbin/shutdown ;
+                          执行权限：root  <br>
+                      2）reboot &nbsp;&nbsp;  重启 <br>
+                        命令名称：reboot;
+                        命令所在路径：/sbin/reboot ;
+                        执行权限：root <br>
+                    </p>
+                    <p class='tm-text'> 八、挂载命令 </p>
+                    <p class='tm-text'> 
+                        linux所有存储设备都必须挂载使用，包括硬盘 <br>
+                        命令名称：mount ;
+                        命令所在路径：/bin/mount ;
+                        执行权限：所有用户 ; <br>
+ 
+                        光盘挂载 <br>
+                        mount  &nbsp;&nbsp;  /dev/sr0  &nbsp;&nbsp; /mnt/cdrom <br>
+
+                        光盘卸载 <br>
+                        umount  &nbsp;&nbsp; /mnt/cdrom  &nbsp;&nbsp;   强调：退出挂载目录，才能卸载 <br>
+                        fdisk  &nbsp;&nbsp; -l  &nbsp;&nbsp;    查看所有disk（磁盘）<br>
+                        mount  &nbsp;&nbsp; -t  &nbsp;&nbsp; vfat  &nbsp;&nbsp; /dev/sdb1  &nbsp;&nbsp; /mnt/usb
+                    </p>
+                    <p class='tm-text'>九、网络命令</p>
+                    <p class='tm-text'>
+                      1 ping  &nbsp;&nbsp; 测试网络连通性 <br>
+                          命令名称：ping ;
+                          命令所在路径：/bin/ping ;
+                          执行权限：所有用户 ; <br>
+
+                        ping &nbsp;&nbsp; -c &nbsp;&nbsp; 次数 &nbsp;&nbsp; ip &nbsp;&nbsp;   探测网络通畅 <br>
+
+                      2 ifconfig   &nbsp;&nbsp;   查询本机网络信息 <br>
+                          命令名称：ifconfig ; 
+                          命令英文原意：interface configure ;
+                          命令所在路径：/sbin/ifconfig ;
+                          执行权限：root <br>
+                          临时设置ip地址 <br>
+                           
+                          ifconfig &nbsp;&nbsp; eth0 &nbsp;&nbsp; IP地址 &nbsp;&nbsp; //重启就会失效
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="cd-full-width">
+            <div class="container-fluid js-tm-page-content" data-page-no="2">
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="tm-2-col-container">
+                    <div class="tm-bg-white-translucent text-xs-left tm-textbox tm-2-col-textbox">
+                      <h2 class="tm-text-title"><a href="https://itstyle.github.io/depot/linuxsetup.html">LAMP环境的搭建</a></h2>
+                      <!-- <p class="tm-text">有空就写</p> -->
+                      <!-- <p class="tm-text">定期分享</p> -->
+                    </div>
+                    <div class="tm-bg-white-translucent text-xs-left tm-textbox tm-2-col-textbox">
+                      <h2 class="tm-text-title"><a href="">linux的基本操作命令</a></h2>
+                      <!-- <p class="tm-text">有空就更新</p> -->
+                      <!-- <p class="tm-text">请多多访问</p> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul> <!-- .cd-hero-slider -->
+      <footer class="tm-footer">
+        <div class="tm-social-icons-container">
+          <!-- <a href="#" class="tm-social-link"><i class="fa fa-facebook"></i></a> -->
+          <!-- <a href="#" class="tm-social-link"><i class="fa fa-google-plus"></i></a> -->
+          <!-- <a href="#" class="tm-social-link"><i class="fa fa-twitter"></i></a> -->
+          <!-- <a href="#" class="tm-social-link"><i class="fa fa-behance"></i></a> -->
+          <!-- <a href="#" class="tm-social-link"><i class="fa fa-linkedin"></i></a> -->
+        </div>
+		    <p class="tm-copyright-text">邓定东的博客&copy;版权所有<a target="_blank" href=""></a></p>
+      </footer>
+    </div> <!-- .cd-hero -->
+  </body>
+</html>
