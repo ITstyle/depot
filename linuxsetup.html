@@ -109,26 +109,24 @@
                     <p class="tm-text">一、准备工作</p>
                     <p class="tm-text">1、安装编译工具gcc、gcc-c++</p>
                     <p class="tm-text">
-                    <pre>
-注意解决依赖关系，推荐使用yum安装，若不能联网
-可使用安装光盘做为yum源——
-  1）编辑yum配置文件：
-  # mount /dev/cdrom /mnt/cdrom 
-  # vi /etc/yum.repos.d/CentOS-Media.repo  
-  [c5-media]  
-  name=CentOS-$releasever - Media 
-  baseurl=file:///mnt/cdrom   * 修改为光盘挂载点 
-          file:///media/cdrom/ 
-          file:///media/cdrecorder/ 
-  gpgcheck=0
-  enabled=1  * 改为1意为启用
-  gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5
-  2）剪切/etc/yum.repos.d/CentOS-Base.repo
-  # mv /etc/yum.repos.d/CentOS-Base.repo /backup
-  3）依次安装gcc、gcc-c++
-  # yum -y install gcc
-  # yum -y install gcc-c++
-                    </pre>   
+                      注意解决依赖关系，推荐使用yum安装，若不能联网
+                      可使用安装光盘做为yum源—— <br>
+                        1）编辑yum配置文件：<br>
+                        # mount /dev/cdrom /mnt/cdrom <br> 
+                        # vi /etc/yum.repos.d/CentOS-Media.repo <br>  
+                        [c5-media]  <br>
+                        name=CentOS-$releasever - Media  <br>
+                        baseurl=file:///mnt/cdrom   * 修改为光盘挂载点 <br> 
+                                file:///media/cdrom/  <br>
+                                file:///media/cdrecorder/  <br>
+                        gpgcheck=0 <br>
+                        enabled=1  * 改为1意为启用 <br>
+                        gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5 <br>
+                        2）剪切/etc/yum.repos.d/CentOS-Base.repo <br>
+                        # mv /etc/yum.repos.d/CentOS-Base.repo /backup <br>
+                        3）依次安装gcc、gcc-c++ <br>
+                        # yum -y install gcc <br>
+                        # yum -y install gcc-c++ <br>
                     </p>
                   </div>
                 </div>
